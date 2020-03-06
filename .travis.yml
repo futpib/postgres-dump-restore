@@ -1,0 +1,11 @@
+script:
+- docker build . --tag $TRAVIS_REPO_SLUG:$TRAVIS_BRANCH
+after_success:
+- echo "$DOCKER_PASSWORD" | docker login -u futpib --password-stdin
+- docker push $TRAVIS_REPO_SLUG:$TRAVIS_BRANCH
+branches:
+  only:
+  - master
+env:
+  global:
+  - secure: PsB2GQd6KqSfFB6iJaxhpRCX0IweoFmagRYQACXYUqxG3H9T3yLiTSiTxH5+ES5qVGCD9I6DRtVkZlr0AmBhfrfoP3hTCXWIC9CFypFkyK7CF4esaJS2GxZBL4/qEfswrqSp2sPhF12dKFL4aRiEQc+XWgZ3itv1qgYR5x5si4oUiXl9OSqfr7QCSdsLhXm5rNajNHS5WebjUZZFhHVO5nNge2iDjzrMkOnA9Cc4KR0bHGM/kCojR5Go34bn3Bj5wthUGAQX4Yv1qOEUy7k0f33v2vkBc5Kk791hKA+fTWqHjVFZ8LgyqMWRqfciVwyh6G6caJhUmOxx0Liikso/mDKEnfOVxGkZXRMpd+Axm3EcD02NBBYfh6YHGb+ppvhhNB9GHyMOoBCG9ChfywMmBEJcRfzswbUD8+2WqWrBwHIzKCcm5Tqadw2Ci2gMvvpNMFgFJ9KEgenrILOasugZYsGzWeICN24soLqgyVz2hZg6fT1/dJIDfvVdOwjpVujPT3F7qIrlWkFZdB6UHq6T16XbqJ6bns8SECTWIozE6Rq3d3zKcX96QtTYjjWSm7BOtmjp3WEztzFkNllRZcVUABW9OtJ1VvcaEKequMDTKPewtqUG6irCC3M+hvNGjTVjvLoxspBjFtw6lhFDvyV8+XMtLaFEvMYnQCkat1AsszY=
